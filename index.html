@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Хайрт Ээждээ Төрсөн Өдрийн Мэнд Хүргэе! ❤️</title>
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Great+Vibes&family=Marck+Script&display=swap" rel="stylesheet">
+  <title>Хайрт ээждээ төрсөн өдрийн мэнд хүргэе! ❤️</title>
+  <!-- Кирилл Монгол үсгийг бүрэн дэмждэг Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -13,7 +14,7 @@
     }
     body {
       background: linear-gradient(135deg, #fff0f5 0%, #fed6e3 50%, #fbc2eb 100%);
-      font-family: 'Comfortaa', cursive, sans-serif;
+      font-family: 'Montserrat', sans-serif;
       color: #4a3e3d;
       overflow-x: hidden;
     }
@@ -53,8 +54,8 @@
     /* Header Banner */
     header {
       text-align: center;
-      padding: 45px 20px;
-      background: rgba(255, 255, 255, 0.9);
+      padding: 40px 20px;
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(10px);
       border-radius: 30px;
       box-shadow: 0 10px 30px rgba(230, 100, 150, 0.15);
@@ -62,17 +63,22 @@
       border: 2px solid rgba(255, 255, 255, 0.9);
     }
     h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 3.5rem;
+      font-family: 'Caveat', cursive;
+      font-size: 3.2rem;
       color: #e84393;
-      margin-bottom: 10px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+      margin-bottom: 8px;
+      line-height: 1.2;
     }
-    .subtitle {
-      font-size: 1.15rem;
-      color: #6c5ce7;
-      font-weight: bold;
-      font-family: 'Marck Script', cursive;
+    .date-badge {
+      display: inline-block;
+      background: rgba(232, 67, 147, 0.1);
+      color: #e84393;
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-top: 5px;
+      letter-spacing: 1px;
     }
 
     /* Cards Layout */
@@ -111,7 +117,7 @@
     .img-wrapper img {
       max-width: 100%;
       max-height: 100%;
-      object-fit: contain; /* Зургийг огт таслахгүй бүтнээр нь багтаана */
+      object-fit: contain;
       display: block;
       cursor: pointer;
       transition: transform 0.3s ease;
@@ -121,262 +127,9 @@
     }
 
     .card .poem-title {
-      font-family: 'Marck Script', cursive;
-      font-size: 1.5rem;
+      font-family: 'Caveat', cursive;
+      font-size: 2rem;
       color: #e84393;
       margin-bottom: 8px;
       font-weight: bold;
     }
-
-    .card p {
-      font-size: 1rem;
-      line-height: 1.7;
-      color: #555;
-      padding: 0 10px;
-    }
-
-    /* Message Highlight Card */
-    .special-card {
-      background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
-      color: white;
-      border-radius: 28px;
-      padding: 40px 25px;
-      text-align: center;
-      box-shadow: 0 12px 30px rgba(255, 117, 140, 0.4);
-      margin: 15px 0;
-    }
-    .special-card h2 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 3.2rem;
-      margin-bottom: 15px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-    }
-    .special-card p {
-      color: white;
-      font-size: 1.15rem;
-      line-height: 1.8;
-      font-family: 'Comfortaa', cursive;
-    }
-
-    /* Interactive Button */
-    .love-btn {
-      background: white;
-      color: #e84393;
-      border: none;
-      padding: 14px 32px;
-      font-size: 1.1rem;
-      font-weight: bold;
-      border-radius: 50px;
-      cursor: pointer;
-      font-family: inherit;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-      transition: all 0.25s ease;
-      margin-top: 20px;
-    }
-    .love-btn:hover {
-      transform: scale(1.05);
-      background: #fff0f5;
-    }
-    .love-btn:active {
-      transform: scale(0.96);
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 45px 10px 20px;
-      font-size: 1rem;
-      color: #777;
-    }
-
-    /* Lightbox Modal */
-    .lightbox {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.88);
-      z-index: 999;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-    .lightbox img {
-      max-width: 95%;
-      max-height: 90vh;
-      border-radius: 12px;
-      box-shadow: 0 0 25px rgba(255,255,255,0.25);
-      object-fit: contain;
-    }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 2.6rem; }
-      .special-card h2 { font-size: 2.5rem; }
-      .img-wrapper { height: 300px; }
-      .container { padding: 12px; }
-      .card { padding: 15px 10px; }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="bg-hearts" id="hearts-container"></div>
-
-  <div class="container">
-    <header>
-      <h1>Хайрт Ээждээ ❤️</h1>
-      <p class="subtitle">Төрсөн өдрийн халуун баярын мэнд хүргэе!</p>
-    </header>
-
-    <div class="timeline">
-      <!-- 1 -->
-      <div class="card">
-        <div class="img-wrapper">
-          <img src="images/mom1.jfif" alt="Ээжийн зураг 1" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
-        </div>
-        <div class="poem-title">Амьдралыг гэрэлтүүлэгч нар минь</div>
-        <p>Үргэлж биднийхээ төлөө цохилох халуун сэтгэлтэй, уужим ухаантай үзэсгэлэнт ээж минь таньдаа төрсөн өдрийн мэнд хүргэе!</p>
-      </div>
-
-      <!-- 2 -->
-      <div class="card">
-        <div class="img-wrapper">
-          <img src="images/mom2.jfif" alt="Ээжийн зураг 2" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
-        </div>
-        <div class="poem-title">Сүр жавхлан ба Бахархал</div>
-        <p>Эх орныхоо бахархал болсон эрүүл чийрэг, сүр жавхлантай тансаг төрх, урам зориг минь билээ.</p>
-      </div>
-
-      <!-- 3 -->
-      <div class="card">
-        <div class="img-wrapper">
-          <img src="images/mom3.jfif" alt="Ээжийн зураг 3" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
-        </div>
-        <div class="poem-title">Хамгийн нандин агшин</div>
-        <p>Хүүгийнхээ дэргэд үргэлж инээмсэглэж, амьдралын хором бүрийг амар тайван, аз жаргалаар дүүргэдэг нар шиг ээж минь.</p>
-      </div>
-
-      <!-- Special Card from Son -->
-      <div class="special-card">
-        <h2>Хүүгээс нь... 🌸</h2>
-        <p>
-          Ээжээ, та бол миний амьдралын хамгийн том бахархал, хамгийн нөмөртэй ач тустай нар минь билээ.<br><br>
-          Танд эрүүл энх, амар тайван, хамгийн сайн сайхан бүхнийг хүсэн ерөөе!
-        </p>
-        <button class="love-btn" onclick="sendLove()">Хүүгээс нь хайр илгээх 💖</button>
-      </div>
-
-      <!-- 4 -->
-      <div class="card">
-        <div class="img-wrapper">
-          <img src="images/mom4.jfif" alt="Ээжийн зураг 4" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
-        </div>
-        <div class="poem-title">Гэр бүлийн тулгуур</div>
-        <p>Элбэг дулаахан гэр бүлийн минь тулгуур багана болж, нандин бүхнийг бидэндээ сэтгэлээрээ бэлэглэгч.</p>
-      </div>
-
-      <!-- 5 -->
-      <div class="card">
-        <div class="img-wrapper">
-          <img src="images/mom5.jfif" alt="Ээжийн зураг 5" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
-        </div>
-        <div class="poem-title">Гэгээлэг инээмсэглэл</div>
-        <p>Хаана ч байсан таны минь инээмсэглэл орчныг гэрэлтүүлж, эргэн тойрондоо дандаа эерэг дулаан мэдрэмжийг түгээдэг.</p>
-      </div>
-
-      <!-- 6 -->
-      <div class="card">
-        <div class="img-wrapper">
-          <img src="images/mom6.jfif" alt="Ээжийн зураг 6" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
-        </div>
-        <div class="poem-title">Аяллын сайхан дурсамжууд</div>
-        <p>Амьдралын шинэ хуудас бүрийг баяр баясгалан, аялал дурсамжаар дүүрэн өнгөрүүлж буй гэгээн агшнууд.</p>
-      </div>
-
-      <!-- 7 -->
-      <div class="card">
-        <div class="img-wrapper">
-          <img src="images/mom7.jfif" alt="Ээжийн зураг 7" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
-        </div>
-        <div class="poem-title">Дэгжин ба Эрхэмсэг</div>
-        <p>Үргэлж дэгжин, өөртөө итгэлтэй бөгөөд чамин хэв маягтай хайрт ээж минь.</p>
-      </div>
-
-      <!-- 8 -->
-      <div class="card">
-        <div class="img-wrapper">
-          <img src="images/mom8.jfif" alt="Ээжийн зураг 8" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
-        </div>
-        <div class="poem-title">Байгалийн гоо үзэсгэлэн</div>
-        <p>Цэлмэг тэнгэр, байгалийн сайханд ч та минь хамгийн чимэгтэй нь болон инээмсэглэн зогсоно.</p>
-      </div>
-
-      <!-- 9 -->
-      <div class="card">
-        <div class="img-wrapper">
-          <img src="images/mom9.jfif" alt="Ээжийн зураг 9" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
-        </div>
-        <div class="poem-title">Аз жаргалтай хором бүр</div>
-        <p>Амьдралын хором бүрийг таалан өнгөрүүлж, үргэлж залуугаараа, эрч хүчээр дүүрэн яваарай!</p>
-      </div>
-
-      <!-- 10 -->
-      <div class="card">
-        <div class="img-wrapper">
-          <img src="images/mom10.jfif" alt="Ээжийн зураг 10" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
-        </div>
-        <div class="poem-title">Хамгийн нандин Ээждээ</div>
-        <p>Гэрэлт инээмсэглэлээрээ сэтгэл дулаацуулагч миний үзэсгэлэнт ээж! Та минь урт насалж, удаан жаргаарай.</p>
-      </div>
-    </div>
-
-    <footer>
-      <p style="font-size: 1.2rem; font-family: 'Marck Script', cursive; color: #e84393;">Танд маш их хайртай шүү, Ээжээ! ❤️</p>
-      <p style="margin-top: 8px; font-size: 0.85rem; color: #999;">Хүүгээс нь зориулан бүтээв</p>
-    </footer>
-  </div>
-
-  <!-- Lightbox Modal -->
-  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <img id="lightbox-img" src="" alt="Томорсон зураг">
-  </div>
-
-  <script>
-    // Floating Hearts Animation
-    const heartsContainer = document.getElementById('hearts-container');
-    const hearts = ['❤️', '💖', '🌸', '✨', '💕', '🌷'];
-    
-    for (let i = 0; i < 22; i++) {
-      const heart = document.createElement('div');
-      heart.className = 'heart-particle';
-      heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (Math.random() * 5 + 6) + 's';
-      heart.style.animationDelay = (Math.random() * 5) + 's';
-      heartsContainer.appendChild(heart);
-    }
-
-    // Lightbox Function
-    function openLightbox(src) {
-      document.getElementById('lightbox-img').src = src;
-      document.getElementById('lightbox').style.display = 'flex';
-    }
-    function closeLightbox() {
-      document.getElementById('lightbox').style.display = 'none';
-    }
-
-    // Button Interaction
-    function sendLove() {
-      alert('Ээждээ хайртай шүү гэсэн халуун сэтгэлийн зурвас болон сарнай илгээгдлээ! ❤️🎉');
-    }
-
-    // Handle missing image
-    function handleImgError(img) {
-      img.onerror = null;
-      img.src = 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80';
-    }
-  </script>
-</body>
-</html>
