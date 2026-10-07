@@ -12,13 +12,13 @@
       padding: 0;
     }
     body {
-      background: linear-gradient(135deg, #fff5f7 0%, #fed6e3 50%, #fbc2eb 100%);
+      background: linear-gradient(135deg, #fff0f5 0%, #fed6e3 50%, #fbc2eb 100%);
       font-family: 'Comfortaa', cursive, sans-serif;
       color: #4a3e3d;
       overflow-x: hidden;
     }
 
-    /* Floating background hearts */
+    /* Floating background elements */
     .bg-hearts {
       position: fixed;
       top: 0;
@@ -31,21 +31,21 @@
     }
     .heart-particle {
       position: absolute;
-      color: rgba(255, 105, 180, 0.3);
-      font-size: 20px;
-      animation: floatUp 8s infinite linear;
+      color: rgba(238, 82, 153, 0.35);
+      font-size: 22px;
+      animation: floatUp 9s infinite linear;
     }
     @keyframes floatUp {
-      0% { transform: translateY(100vh) scale(0.8) rotate(0deg); opacity: 0; }
+      0% { transform: translateY(105vh) scale(0.8) rotate(0deg); opacity: 0; }
       20% { opacity: 0.8; }
       100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; }
     }
 
     /* Main Container */
     .container {
-      max-width: 800px;
+      max-width: 680px;
       margin: 0 auto;
-      padding: 20px 15px;
+      padding: 30px 15px;
       position: relative;
       z-index: 1;
     }
@@ -53,9 +53,9 @@
     /* Header Banner */
     header {
       text-align: center;
-      padding: 40px 20px;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(8px);
+      padding: 45px 20px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
       border-radius: 30px;
       box-shadow: 0 10px 30px rgba(230, 100, 150, 0.15);
       margin-bottom: 40px;
@@ -63,61 +63,76 @@
     }
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 3.2rem;
+      font-size: 3.5rem;
       color: #e84393;
       margin-bottom: 10px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
     }
     .subtitle {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       color: #6c5ce7;
       font-weight: bold;
+      font-family: 'Marck Script', cursive;
     }
 
-    /* Timeline Items */
+    /* Cards Layout */
     .timeline {
       display: flex;
       flex-direction: column;
       gap: 35px;
     }
     .card {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.92);
       border-radius: 24px;
       padding: 20px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 8px 25px rgba(232, 67, 147, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.8);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       text-align: center;
     }
     .card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(232, 67, 147, 0.2);
+      box-shadow: 0 15px 35px rgba(232, 67, 147, 0.25);
     }
+
+    /* Image Wrapper Fix - No Crop */
     .img-wrapper {
       width: 100%;
-      max-height: 480px;
+      height: 380px;
       overflow: hidden;
       border-radius: 18px;
-      margin-bottom: 15px;
-      background-color: #ffeaa7;
-      position: relative;
+      margin-bottom: 18px;
+      background-color: #fff8f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #ffeaa7;
     }
     .img-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain; /* Зургийг огт таслахгүй бүтнээр нь багтаана */
       display: block;
       cursor: pointer;
-      transition: transform 0.4s ease;
+      transition: transform 0.3s ease;
     }
     .img-wrapper img:hover {
-      transform: scale(1.03);
+      transform: scale(1.02);
     }
+
+    .card .poem-title {
+      font-family: 'Marck Script', cursive;
+      font-size: 1.5rem;
+      color: #e84393;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
     .card p {
       font-size: 1rem;
-      line-height: 1.6;
+      line-height: 1.7;
       color: #555;
-      padding: 5px 10px;
+      padding: 0 10px;
     }
 
     /* Message Highlight Card */
@@ -125,44 +140,53 @@
       background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
       color: white;
       border-radius: 28px;
-      padding: 35px 25px;
+      padding: 40px 25px;
       text-align: center;
       box-shadow: 0 12px 30px rgba(255, 117, 140, 0.4);
-      margin: 10px 0;
+      margin: 15px 0;
     }
     .special-card h2 {
       font-family: 'Great Vibes', cursive;
-      font-size: 2.8rem;
+      font-size: 3.2rem;
       margin-bottom: 15px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
     }
     .special-card p {
       color: white;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       line-height: 1.8;
+      font-family: 'Comfortaa', cursive;
+    }
+
+    /* Interactive Button */
+    .love-btn {
+      background: white;
+      color: #e84393;
+      border: none;
+      padding: 14px 32px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      transition: all 0.25s ease;
+      margin-top: 20px;
+    }
+    .love-btn:hover {
+      transform: scale(1.05);
+      background: #fff0f5;
+    }
+    .love-btn:active {
+      transform: scale(0.96);
     }
 
     /* Footer */
     footer {
       text-align: center;
-      padding: 40px 10px 20px;
-      font-size: 0.95rem;
-      color: #888;
-    }
-    .love-btn {
-      background: #e84393;
-      color: white;
-      border: none;
-      padding: 12px 28px;
-      font-size: 1.05rem;
-      border-radius: 50px;
-      cursor: pointer;
-      font-family: inherit;
-      box-shadow: 0 5px 15px rgba(232, 67, 147, 0.4);
-      transition: all 0.2s;
-      margin-top: 15px;
-    }
-    .love-btn:active {
-      transform: scale(0.95);
+      padding: 45px 10px 20px;
+      font-size: 1rem;
+      color: #777;
     }
 
     /* Lightbox Modal */
@@ -173,23 +197,26 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.85);
+      background: rgba(0,0,0,0.88);
       z-index: 999;
       justify-content: center;
       align-items: center;
+      padding: 20px;
     }
     .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
+      max-width: 95%;
+      max-height: 90vh;
       border-radius: 12px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+      box-shadow: 0 0 25px rgba(255,255,255,0.25);
+      object-fit: contain;
     }
 
     @media (max-width: 600px) {
-      h1 { font-size: 2.3rem; }
-      .special-card h2 { font-size: 2.2rem; }
-      .container { padding: 10px; }
-      .card { padding: 15px; }
+      h1 { font-size: 2.6rem; }
+      .special-card h2 { font-size: 2.5rem; }
+      .img-wrapper { height: 300px; }
+      .container { padding: 12px; }
+      .card { padding: 15px 10px; }
     }
   </style>
 </head>
@@ -200,7 +227,7 @@
   <div class="container">
     <header>
       <h1>Хайрт Ээждээ ❤️</h1>
-      <p class="subtitle">Төрсөн Өдрийн Баярын Мэнд Хүргэе!</p>
+      <p class="subtitle">Төрсөн өдрийн халуун баярын мэнд хүргэе!</p>
     </header>
 
     <div class="timeline">
@@ -209,7 +236,8 @@
         <div class="img-wrapper">
           <img src="images/mom1.jfif" alt="Ээжийн зураг 1" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
         </div>
-        <p>Үргэлж биднийхээ төлөө цохилох халуун сэтгэлтэй, үзэсгэлэнт ээж минь.</p>
+        <div class="poem-title">Амьдралыг гэрэлтүүлэгч нар минь</div>
+        <p>Үргэлж биднийхээ төлөө цохилох халуун сэтгэлтэй, уужим ухаантай үзэсгэлэнт ээж минь таньдаа төрсөн өдрийн мэнд хүргэе!</p>
       </div>
 
       <!-- 2 -->
@@ -217,7 +245,8 @@
         <div class="img-wrapper">
           <img src="images/mom2.jfif" alt="Ээжийн зураг 2" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
         </div>
-        <p>Эх орныхоо бахархал болсон эрүүл чийрэг, сүр жавхлантай тансаг төрх минь.</p>
+        <div class="poem-title">Сүр жавхлан ба Бахархал</div>
+        <p>Эх орныхоо бахархал болсон эрүүл чийрэг, сүр жавхлантай тансаг төрх, урам зориг минь билээ.</p>
       </div>
 
       <!-- 3 -->
@@ -225,15 +254,16 @@
         <div class="img-wrapper">
           <img src="images/mom3.jfif" alt="Ээжийн зураг 3" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
         </div>
-        <p>Хүүгийнхээ дэргэд үргэлж инээмсэглэж байдаг нар шиг нандин ээж минь.</p>
+        <div class="poem-title">Хамгийн нандин агшин</div>
+        <p>Хүүгийнхээ дэргэд үргэлж инээмсэглэж, амьдралын хором бүрийг амар тайван, аз жаргалаар дүүргэдэг нар шиг ээж минь.</p>
       </div>
 
       <!-- Special Card from Son -->
       <div class="special-card">
         <h2>Хүүгээс нь... 🌸</h2>
         <p>
-          Ээжээ, та бол миний амьдралын хамгийн том бахархал, хамгийн нөмөртэй ач тустай нар минь билээ.<br>
-          Танд эрүүл энх, хамгийн сайн сайхан бүхнийг хүсэн ерөөе!
+          Ээжээ, та бол миний амьдралын хамгийн том бахархал, хамгийн нөмөртэй ач тустай нар минь билээ.<br><br>
+          Танд эрүүл энх, амар тайван, хамгийн сайн сайхан бүхнийг хүсэн ерөөе!
         </p>
         <button class="love-btn" onclick="sendLove()">Хүүгээс нь хайр илгээх 💖</button>
       </div>
@@ -243,7 +273,8 @@
         <div class="img-wrapper">
           <img src="images/mom4.jfif" alt="Ээжийн зураг 4" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
         </div>
-        <p>Элбэг дулаахан гэр бүлийн минь тулгуур, хайртай хүмүүсийнхээ хамтаар.</p>
+        <div class="poem-title">Гэр бүлийн тулгуур</div>
+        <p>Элбэг дулаахан гэр бүлийн минь тулгуур багана болж, нандин бүхнийг бидэндээ сэтгэлээрээ бэлэглэгч.</p>
       </div>
 
       <!-- 5 -->
@@ -251,7 +282,8 @@
         <div class="img-wrapper">
           <img src="images/mom5.jfif" alt="Ээжийн зураг 5" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
         </div>
-        <p>Дулаахан гэрэлтэй орчинд ч та минь хамгийн тод гэрэлтэж харагддаг.</p>
+        <div class="poem-title">Гэгээлэг инээмсэглэл</div>
+        <p>Хаана ч байсан таны минь инээмсэглэл орчныг гэрэлтүүлж, эргэн тойрондоо дандаа эерэг дулаан мэдрэмжийг түгээдэг.</p>
       </div>
 
       <!-- 6 -->
@@ -259,7 +291,8 @@
         <div class="img-wrapper">
           <img src="images/mom6.jfif" alt="Ээжийн зураг 6" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
         </div>
-        <p>Аялал бүрээрээ баяр баясал дүүрэн байдаг, шинэлэг дурсамжууд.</p>
+        <div class="poem-title">Аяллын сайхан дурсамжууд</div>
+        <p>Амьдралын шинэ хуудас бүрийг баяр баясгалан, аялал дурсамжаар дүүрэн өнгөрүүлж буй гэгээн агшнууд.</p>
       </div>
 
       <!-- 7 -->
@@ -267,7 +300,8 @@
         <div class="img-wrapper">
           <img src="images/mom7.jfif" alt="Ээжийн зураг 7" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
         </div>
-        <p>Үргэлж дэгжин, гоёмсог бөгөөд гэгээлэг хэв маягтай ээж минь.</p>
+        <div class="poem-title">Дэгжин ба Эрхэмсэг</div>
+        <p>Үргэлж дэгжин, өөртөө итгэлтэй бөгөөд чамин хэв маягтай хайрт ээж минь.</p>
       </div>
 
       <!-- 8 -->
@@ -275,7 +309,8 @@
         <div class="img-wrapper">
           <img src="images/mom8.jfif" alt="Ээжийн зураг 8" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
         </div>
-        <p>Цэлмэг тэнгэр, байгалийн сайханд инээмсэглэн зогсох агшин.</p>
+        <div class="poem-title">Байгалийн гоо үзэсгэлэн</div>
+        <p>Цэлмэг тэнгэр, байгалийн сайханд ч та минь хамгийн чимэгтэй нь болон инээмсэглэн зогсоно.</p>
       </div>
 
       <!-- 9 -->
@@ -283,7 +318,8 @@
         <div class="img-wrapper">
           <img src="images/mom9.jfif" alt="Ээжийн зураг 9" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
         </div>
-        <p>Амьдралын хором бүрийг аз жаргалтайгаар таалан өнгөрүүлэгч.</p>
+        <div class="poem-title">Аз жаргалтай хором бүр</div>
+        <p>Амьдралын хором бүрийг таалан өнгөрүүлж, үргэлж залуугаараа, эрч хүчээр дүүрэн яваарай!</p>
       </div>
 
       <!-- 10 -->
@@ -291,13 +327,14 @@
         <div class="img-wrapper">
           <img src="images/mom10.jfif" alt="Ээжийн зураг 10" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
         </div>
-        <p>Гэгээлэг инээмсэглэлээрээ бусдыг дулаацуулагч миний үзэсгэлэнт ээж!</p>
+        <div class="poem-title">Хамгийн нандин Ээждээ</div>
+        <p>Гэрэлт инээмсэглэлээрээ сэтгэл дулаацуулагч миний үзэсгэлэнт ээж! Та минь урт насалж, удаан жаргаарай.</p>
       </div>
     </div>
 
     <footer>
-      <p>Танд маш их хайртай шүү, Ээжээ! ❤️</p>
-      <p style="margin-top: 5px; font-size: 0.85rem; color: #aaa;">Хүүгээс нь зориулан бүтээв</p>
+      <p style="font-size: 1.2rem; font-family: 'Marck Script', cursive; color: #e84393;">Танд маш их хайртай шүү, Ээжээ! ❤️</p>
+      <p style="margin-top: 8px; font-size: 0.85rem; color: #999;">Хүүгээс нь зориулан бүтээв</p>
     </footer>
   </div>
 
@@ -311,12 +348,12 @@
     const heartsContainer = document.getElementById('hearts-container');
     const hearts = ['❤️', '💖', '🌸', '✨', '💕', '🌷'];
     
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 22; i++) {
       const heart = document.createElement('div');
       heart.className = 'heart-particle';
       heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
       heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      heart.style.animationDuration = (Math.random() * 5 + 6) + 's';
       heart.style.animationDelay = (Math.random() * 5) + 's';
       heartsContainer.appendChild(heart);
     }
@@ -332,7 +369,7 @@
 
     // Button Interaction
     function sendLove() {
-      alert('Ээждээ хайртай шүү гэсэн халуун сэтгэлийн зурвас илгээгдлээ! ❤️🎉');
+      alert('Ээждээ хайртай шүү гэсэн халуун сэтгэлийн зурвас болон сарнай илгээгдлээ! ❤️🎉');
     }
 
     // Handle missing image
