@@ -149,4 +149,310 @@
       transition: transform 0.3s ease;
     }
     .img-wrapper img:hover {
-      transform: scale(1.02
+      transform: scale(1.02);
+    }
+
+    .card .poem-title {
+      font-family: 'Caveat', cursive;
+      font-size: 2rem;
+      color: #e84393;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .card p {
+      font-size: 0.98rem;
+      line-height: 1.7;
+      color: #555;
+      padding: 0 10px;
+    }
+
+    /* Message Highlight Card */
+    .special-card {
+      background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+      color: white;
+      border-radius: 28px;
+      padding: 40px 25px;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(255, 117, 140, 0.4);
+      margin: 15px 0;
+    }
+    .special-card h2 {
+      font-family: 'Caveat', cursive;
+      font-size: 3.2rem;
+      margin-bottom: 15px;
+    }
+    .special-card p {
+      color: white;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    /* Interactive Button */
+    .love-btn {
+      background: white;
+      color: #e84393;
+      border: none;
+      padding: 14px 32px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      transition: all 0.25s ease;
+      margin-top: 20px;
+    }
+    .love-btn:hover {
+      transform: scale(1.05);
+      background: #fff0f5;
+    }
+    .love-btn:active {
+      transform: scale(0.96);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 45px 10px 20px;
+      font-size: 1rem;
+      color: #777;
+    }
+
+    /* Lightbox Modal */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.88);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .lightbox img {
+      max-width: 95%;
+      max-height: 90vh;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(255,255,255,0.25);
+      object-fit: contain;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.5rem; }
+      .special-card h2 { font-size: 2.6rem; }
+      .img-wrapper { height: 300px; }
+      .container { padding: 12px; }
+      .card { padding: 15px 10px; }
+      .music-btn { bottom: 15px; right: 15px; padding: 10px 16px; font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Music Audio -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a8c2f1.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Music Toggle Button -->
+  <button class="music-btn" id="music-toggle" onclick="toggleMusic()">
+    <span id="music-icon">🎵</span> <span id="music-text">Дуу тоглуулах</span>
+  </button>
+
+  <div class="bg-hearts" id="hearts-container"></div>
+
+  <div class="container">
+    <header>
+      <h1>Хайрт ээждээ төрсөн өдрийн мэнд хүргэе ❤️</h1>
+      <div class="date-badge">2026-10-07</div>
+    </header>
+
+    <div class="timeline">
+      <!-- 1 -->
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="images/mom1.jfif" alt="Ээжийн зураг 1" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
+        </div>
+        <div class="poem-title">Амьдрал гэрэлтүүлэгч нар минь</div>
+        <p>Үргэлж миний төлөө цохилох халуун сэтгэлтэй, уужим ухаантай үзэсгэлэнт ээж минь тандаа төрсөн өдрийн мэнд хүргэе!</p>
+      </div>
+
+      <!-- 2 -->
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="images/mom2.jfif" alt="Ээжийн зураг 2" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
+        </div>
+        <div class="poem-title">Сүр жавхлан ба Бахархал</div>
+        <p>Эх орныхоо бахархал болсон сүр жавхлантай тансаг төрх, урам зориг минь билээ.</p>
+      </div>
+
+      <!-- 3 -->
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="images/mom3.jfif" alt="Ээжийн зураг 3" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
+        </div>
+        <div class="poem-title">Хамгийн нандин агшин</div>
+        <p>Хүүгийнхээ дэргэд үргэлж инээмсэглэж, амьдралын хором бүрийг амар тайван, аз жаргалаар дүүргэдэг нар шиг ээж минь.</p>
+      </div>
+
+      <!-- Special Card from Son -->
+      <div class="special-card">
+        <h2>Хүүгээс нь... 🌸</h2>
+        <p>
+          Та бол миний амьдралын хамгийн том бахархал, хамгийн нөмөртэй ач тустай нар минь билээ.<br><br>
+          Танд эрүүл энх, амар тайван, хамгийн сайн сайхан бүхнийг хүсэн ерөөе!
+        </p>
+        <button class="love-btn" onclick="sendLove()">Хүүгээс нь хайр илгээх 💖</button>
+      </div>
+
+      <!-- 4 -->
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="images/mom4.jfif" alt="Ээжийн зураг 4" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
+        </div>
+        <div class="poem-title">Гэр бүлийн тулгуур</div>
+        <p>Элбэг дулаахан гэр бүлийн минь тулгуур багана болж, нандин бүхнийг сэтгэлээрээ бэлэглэгч.</p>
+      </div>
+
+      <!-- 5 -->
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="images/mom5.jfif" alt="Ээжийн зураг 5" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
+        </div>
+        <div class="poem-title">Гэгээлэг инээмсэглэл</div>
+        <p>Хаана ч байсан таны минь инээмсэглэл орчныг гэрэлтүүлж, эргэн тойрондоо дандаа эерэг дулаан мэдрэмжийг түгээдэг.</p>
+      </div>
+
+      <!-- 6 -->
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="images/mom6.jfif" alt="Ээжийн зураг 6" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
+        </div>
+        <div class="poem-title">Аяллын сайхан дурсамжууд</div>
+        <p>Амьдралын шинэ хуудас бүрийг баяр баясгалан, аялал дурсамжаар дүүрэн өнгөрүүлж буй гэгээн агшнууд.</p>
+      </div>
+
+      <!-- 7 -->
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="images/mom7.jfif" alt="Ээжийн зураг 7" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
+        </div>
+        <div class="poem-title">Дэгжин ба Эрхэмсэг</div>
+        <p>Үргэлж дэгжин, өөртөө итгэлтэй бөгөөд чамин хэв маягтай хайрт ээж минь.</p>
+      </div>
+
+      <!-- 8 -->
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="images/mom8.jfif" alt="Ээжийн зураг 8" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
+        </div>
+        <div class="poem-title">Байгалийн гоо үзэсгэлэн</div>
+        <p>Цэлмэг тэнгэр, байгалийн сайханд ч та минь хамгийн чимэгтэй нь болон инээмсэглэн зогсоно.</p>
+      </div>
+
+      <!-- 9 -->
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="images/mom9.jfif" alt="Ээжийн зураг 9" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
+        </div>
+        <div class="poem-title">Аз жаргалтай хором бүр</div>
+        <p>Амьдралын хором бүрийг таалан өнгөрүүлж, үргэлж залуугаараа, эрч хүчээр дүүрэн яваарай!</p>
+      </div>
+
+      <!-- 10 -->
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="images/mom10.jfif" alt="Ээжийн зураг 10" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
+        </div>
+        <div class="poem-title">Хамгийн нандин Ээждээ</div>
+        <p>Гэрэлт инээмсэглэлээрээ сэтгэл дулаацуулагч миний үзэсгэлэнт ээж! Та минь урт насалж, удаан жаргаарай.</p>
+      </div>
+    </div>
+
+    <footer>
+      <p style="font-size: 1.3rem; font-family: 'Caveat', cursive; color: #e84393; font-weight: bold;">Танд маш их хайртай шүү, Ээжээ! ❤️</p>
+      <p style="margin-top: 8px; font-size: 0.85rem; color: #999;">Хүүгээс нь зориулан бүтээв</p>
+    </footer>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Томорсон зураг">
+  </div>
+
+  <script>
+    const music = document.getElementById('bg-music');
+    const musicIcon = document.getElementById('music-icon');
+    const musicText = document.getElementById('music-text');
+    let isPlaying = false;
+
+    // Toggle Music Play/Pause
+    function toggleMusic() {
+      if (isPlaying) {
+        music.pause();
+        musicIcon.innerText = '🎵';
+        musicText.innerText = 'Дуу тоглуулах';
+        isPlaying = false;
+      } else {
+        music.play().then(() => {
+          musicIcon.innerText = '🎶';
+          musicText.innerText = 'Дуу зогсоох';
+          isPlaying = true;
+        }).catch(err => {
+          console.log("Audio play error:", err);
+        });
+      }
+    }
+
+    // Auto play attempt on first user click anywhere on screen
+    document.body.addEventListener('click', function autoPlayOnce() {
+      if (!isPlaying) {
+        music.play().then(() => {
+          musicIcon.innerText = '🎶';
+          musicText.innerText = 'Дуу зогсоох';
+          isPlaying = true;
+        }).catch(() => {});
+      }
+      document.body.removeEventListener('click', autoPlayOnce);
+    }, { once: true });
+
+    // Floating Hearts Animation
+    const heartsContainer = document.getElementById('hearts-container');
+    const hearts = ['❤️', '💖', '🌸', '✨', '💕', '🌷'];
+    
+    for (let i = 0; i < 22; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart-particle';
+      heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 5 + 6) + 's';
+      heart.style.animationDelay = (Math.random() * 5) + 's';
+      heartsContainer.appendChild(heart);
+    }
+
+    // Lightbox Function
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+
+    // Button Interaction
+    function sendLove() {
+      alert('Ээждээ хайртай шүү гэсэн халуун сэтгэлийн зурвас болон сарнай илгээгдлээ! ❤️🎉');
+    }
+
+    // Handle missing image
+    function handleImgError(img) {
+      img.onerror = null;
+      img.src = 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80';
+    }
+  </script>
+</body>
+</html>
