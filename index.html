@@ -116,3 +116,230 @@
     .card p {
       font-size: 1rem;
       line-height: 1.6;
+      color: #555;
+      padding: 5px 10px;
+    }
+
+    /* Message Highlight Card */
+    .special-card {
+      background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+      color: white;
+      border-radius: 28px;
+      padding: 35px 25px;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(255, 117, 140, 0.4);
+      margin: 10px 0;
+    }
+    .special-card h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+    }
+    .special-card p {
+      color: white;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 10px 20px;
+      font-size: 0.95rem;
+      color: #888;
+    }
+    .love-btn {
+      background: #e84393;
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      font-size: 1.05rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: 0 5px 15px rgba(232, 67, 147, 0.4);
+      transition: all 0.2s;
+      margin-top: 15px;
+    }
+    .love-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Lightbox Modal */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.3rem; }
+      .special-card h2 { font-size: 2.2rem; }
+      .container { padding: 10px; }
+      .card { padding: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-hearts" id="hearts-container"></div>
+
+  <div class="container">
+    <header>
+      <h1>Хайрт Ээждээ ❤️</h1>
+      <p class="subtitle">Төрсөн Өдрийн Баярын Мэнд Хүргэе!</p>
+    </header>
+
+    <div class="timeline">
+      <!-- 1 -->
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="images/mom1.jfif" alt="Ээжийн зураг 1" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
+        </div>
+        <p>Үргэлж биднийхээ төлөө цохилох халуун сэтгэлтэй, үзэсгэлэнт ээж минь.</p>
+      </div>
+
+      <!-- 2 -->
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="images/mom2.jfif" alt="Ээжийн зураг 2" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
+        </div>
+        <p>Эх орныхоо бахархал болсон эрүүл чийрэг, сүр жавхлантай тансаг төрх минь.</p>
+      </div>
+
+      <!-- 3 -->
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="images/mom3.jfif" alt="Ээжийн зураг 3" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
+        </div>
+        <p>Хүүгийнхээ дэргэд үргэлж инээмсэглэж байдаг нар шиг нандин ээж минь.</p>
+      </div>
+
+      <!-- Special Card from Son -->
+      <div class="special-card">
+        <h2>Хүүгээс нь... 🌸</h2>
+        <p>
+          Ээжээ, та бол миний амьдралын хамгийн том бахархал, хамгийн нөмөртэй ач тустай нар минь билээ.<br>
+          Танд эрүүл энх, хамгийн сайн сайхан бүхнийг хүсэн ерөөе!
+        </p>
+        <button class="love-btn" onclick="sendLove()">Хүүгээс нь хайр илгээх 💖</button>
+      </div>
+
+      <!-- 4 -->
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="images/mom4.jfif" alt="Ээжийн зураг 4" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
+        </div>
+        <p>Элбэг дулаахан гэр бүлийн минь тулгуур, хайртай хүмүүсийнхээ хамтаар.</p>
+      </div>
+
+      <!-- 5 -->
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="images/mom5.jfif" alt="Ээжийн зураг 5" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
+        </div>
+        <p>Дулаахан гэрэлтэй орчинд ч та минь хамгийн тод гэрэлтэж харагддаг.</p>
+      </div>
+
+      <!-- 6 -->
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="images/mom6.jfif" alt="Ээжийн зураг 6" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
+        </div>
+        <p>Аялал бүрээрээ баяр баясал дүүрэн байдаг, шинэлэг дурсамжууд.</p>
+      </div>
+
+      <!-- 7 -->
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="images/mom7.jfif" alt="Ээжийн зураг 7" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
+        </div>
+        <p>Үргэлж дэгжин, гоёмсог бөгөөд гэгээлэг хэв маягтай ээж минь.</p>
+      </div>
+
+      <!-- 8 -->
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="images/mom8.jfif" alt="Ээжийн зураг 8" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
+        </div>
+        <p>Цэлмэг тэнгэр, байгалийн сайханд инээмсэглэн зогсох агшин.</p>
+      </div>
+
+      <!-- 9 -->
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="images/mom9.jfif" alt="Ээжийн зураг 9" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
+        </div>
+        <p>Амьдралын хором бүрийг аз жаргалтайгаар таалан өнгөрүүлэгч.</p>
+      </div>
+
+      <!-- 10 -->
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="images/mom10.jfif" alt="Ээжийн зураг 10" onclick="openLightbox(this.src)" onerror="handleImgError(this)">
+        </div>
+        <p>Гэгээлэг инээмсэглэлээрээ бусдыг дулаацуулагч миний үзэсгэлэнт ээж!</p>
+      </div>
+    </div>
+
+    <footer>
+      <p>Танд маш их хайртай шүү, Ээжээ! ❤️</p>
+      <p style="margin-top: 5px; font-size: 0.85rem; color: #aaa;">Хүүгээс нь зориулан бүтээв</p>
+    </footer>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Томорсон зураг">
+  </div>
+
+  <script>
+    // Floating Hearts Animation
+    const heartsContainer = document.getElementById('hearts-container');
+    const hearts = ['❤️', '💖', '🌸', '✨', '💕', '🌷'];
+    
+    for (let i = 0; i < 20; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart-particle';
+      heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      heart.style.animationDelay = (Math.random() * 5) + 's';
+      heartsContainer.appendChild(heart);
+    }
+
+    // Lightbox Function
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+
+    // Button Interaction
+    function sendLove() {
+      alert('Ээждээ хайртай шүү гэсэн халуун сэтгэлийн зурвас илгээгдлээ! ❤️🎉');
+    }
+
+    // Handle missing image
+    function handleImgError(img) {
+      img.onerror = null;
+      img.src = 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80';
+    }
+  </script>
+</body>
+</html>
