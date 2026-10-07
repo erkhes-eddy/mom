@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="mn" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хайрт Ээждээ Төрсөн Өдрийн Мэнд Хүргэе! 🌸 | Хүүгээс нь</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Comfortaa:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tone.js for Gentle Melodies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+    <style>
+        body {
+            font-family: 'Comfortaa', cursive, sans-serif;
+            background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 35%, #fef3c7 70%, #fbcfe8 100%);
+            color: #4a5568;
+            overflow-x: hidden;
+        }
+
+        .font-handwriting {
+            font-family: 'Caveat', cursive;
+        }
+
+        .font-sans-custom {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Floating Animation for Petals & Hearts */
+        @keyframes floatPetal {
+            0% {
+                transform: translateY(0px) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.9;
+            }
+            85% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(-105vh) rotate(360deg) scale(1.1);
+                opacity: 0;
+            }
+        }
+
+        .petal {
+            position: fixed;
+            bottom: -50px;
+            pointer-events: none;
+            z-index: 15;
+            animation: floatPetal 12s linear infinite;
+        }
+
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 20px 40px rgba(244, 114, 182, 0.12);
+        }
+
+        /* Smooth Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px) scale(0.97);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Polaroid Frame Effect */
+        .polaroid-frame {
+            background: #ffffff;
+            padding: 12px 12px 24px 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+        }
+        .polaroid-frame:hover {
+            transform: translateY(-6px) rotate(1deg);
+            box-shadow: 0 20px 30px -10px rgba(244, 114, 182, 0.3);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fff5f5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f472b6;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen">
+
+    <!-- Floating Petals Container -->
+    <div id="petals-container" class="fixed inset-0 pointer-events-none z-10 overflow-hidden"></div>
+
+    <!-- Floating Top Bar Controls -->
+    <div class="fixed top-4 right-4 z-50 flex items-center gap-2">
+        <button id="music-btn" onclick="toggleMusic()" class="glass-card flex items-center gap-2 px-4 py-2.5 rounded-full text-pink-700 font-semibold shadow-md hover:bg-white hover:scale-105 transition-all duration-300 text-xs md:text-sm">
+            <i id="music-icon" class="fas fa-music text-pink-500 animate-bounce"></i>
+            <span id="music-text">Аялгуу тоглох</span>
+        </button>
+    </div>
+
+    <!-- Hero Header -->
+    <header class="min-h-screen flex flex-col items-center justify-center text-center p-6 relative">
+        <div class="glass-card max-w-3xl p-8 md:p-12 rounded-3xl reveal active shadow-2xl relative overflow-hidden">
+            <div class="absolute -top-10 -left-10 w-36 h-36 bg-pink-300/30 rounded-full blur-2xl"></div>
+            <div class="absolute -bottom-10 -right-10 w-36 h-36 bg-amber-300/30 rounded-full blur-2xl"></div>
+
+            <span class="inline-block px-4 py-1.5 bg-pink-100 text-pink-600 rounded-full text-xs md:text-sm font-semibold mb-4 tracking-widest uppercase shadow-sm">
+                💖 ХҮҮГЭЭС НЬ ЗОРИУЛАВ 💖
+            </span>
+
+            <!-- Hero Image Profile Frame -->
+            <div class="w-40 h-40 md:w-48 md:h-48 mx-auto mb-6 rounded-full p-2 bg-gradient-to-tr from-pink-400 via-rose-300 to-amber-300 shadow-xl relative group cursor-pointer" onclick="openLightbox('img-1')">
+                <div class="w-full h-full rounded-full overflow-hidden border-4 border-white bg-pink-50">
+                    <img id="img-1"
+                         src="images/mom1.jpg" 
+                         onerror="handleImgError(this, 'Хайрт Ээж Минь')"
+                         alt="Хайрт Ээж Минь" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                </div>
+                <span class="absolute bottom-1 right-2 bg-white p-2 rounded-full shadow-md text-pink-500 text-sm animate-pulse">🌸</span>
+            </div>
+
+            <h1 class="text-3xl md:text-5xl font-bold text-gray-800 mb-3 leading-tight">
+                Хайрт Ээждээ <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-rose-500 to-amber-500">Төрсөн Өдрийн Мэнд Хүргэе! ✨</span>
+            </h1>
+            <p class="text-base md:text-lg text-gray-600 mb-8 font-light max-w-lg mx-auto leading-relaxed">
+                Миний амьдралын хамгийн том бахархал, нар мэт дулаан нэгэн болсон хайртай ээж тандаа хүүгээс нь чин сэтгэлийн баярын мэнд хүргэе!
+            </p>
+            <a href="#gallery" class="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-rose-400 text-white font-semibold px-8 py-4 rounded-full shadow-lg shadow-pink-300/50 hover:shadow-xl hover:scale-105 transition-all duration-300">
+                <span>Дурсамжаар аялах</span>
+                <i class="fas fa-chevron-down animate-bounce ml-2"></i>
+            </a>
+        </div>
+    </header>
+
+    <main id="gallery" class="max-w-4xl mx-auto px-4 py-12 space-y-16">
+
+        <!-- Photo Item 1 -->
+        <div class="reveal flex flex-col md:flex-row items-center gap-8 glass-card p-6 md:p-8 rounded-3xl">
+            <div class="w-full md:w-1/2 polaroid-frame rounded-2xl cursor-pointer group" onclick="openLightbox('img-1')">
+                <div class="w-full aspect-[3/4] max-h-[420px] rounded-xl overflow-hidden bg-pink-100">
+                    <img src="images/mom1.jpg" 
+                         onerror="handleImgError(this, 'Бахархалт Ээж')"
+                         alt="Бахархалт Ээж" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <p class="text-center font-handwriting text-xl text-pink-600 mt-3">🇲🇳 Хүүгийнхээ бахархал ээж минь</p>
+            </div>
+            <div class="w-full md:w-1/2 space-y-4 text-center md:text-left">
+                <span class="text-pink-500 font-semibold text-xs tracking-widest uppercase">Дурсамж #1</span>
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-800">Хүүгийнх нь Бахархал</h3>
+                <p class="text-gray-600 leading-relaxed font-sans-custom text-sm md:text-base">
+                    Ээж таны минь сүр жавхаа, тэвчээр хатуужил, дайчин зан чанар нь хүүгийнх нь хувьд үргэлж бахархаж, үлгэр авч явах тод гэрэл минь байдаг.
+                </p>
+            </div>
+        </div>
+
+        <!-- Photo Item 2 -->
+        <div class="reveal flex flex-col md:flex-row-reverse items-center gap-8 glass-card p-6 md:p-8 rounded-3xl">
+            <div class="w-full md:w-1/2 polaroid-frame rounded-2xl cursor-pointer group" onclick="openLightbox('img-2')">
+                <div class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-pink-100">
+                    <img id="img-2" src="images/mom2.jpg" 
+                         onerror="handleImgError(this, 'Дулаахан агшин')"
+                         alt="Дулаахан агшин" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <p class="text-center font-handwriting text-xl text-pink-600 mt-3">🎄 Хамтдаа өнгөрүүлсэн мөч</p>
+            </div>
+            <div class="w-full md:w-1/2 space-y-4 text-center md:text-left">
+                <span class="text-pink-500 font-semibold text-xs tracking-widest uppercase">Дурсамж #2</span>
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-800">Хамтдаа Өнгөрүүлсэн Мөчүүд</h3>
+                <p class="text-gray-600 leading-relaxed font-sans-custom text-sm md:text-base">
+                    Ээжтэйгээ хамт байх агшин бүрд хүү нь хамгийн амар амгалан байдаг. Таны минь гэгээлэг инээмсэглэл хаана ч очсон гэрэл цацруулдаг шүү.
+                </p>
+            </div>
+        </div>
+
+        <!-- Photo Item 3 -->
+        <div class="reveal flex flex-col md:flex-row items-center gap-8 glass-card p-6 md:p-8 rounded-3xl">
+            <div class="w-full md:w-1/2 polaroid-frame rounded-2xl cursor-pointer group" onclick="openLightbox('img-3')">
+                <div class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-pink-100">
+                    <img id="img-3" src="images/mom3.jpg" 
+                         onerror="handleImgError(this, 'Нандин холбоо')"
+                         alt="Нандин холбоо" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <p class="text-center font-handwriting text-xl text-pink-600 mt-3">❤️ Гэр бүлийн ариун холбоо</p>
+            </div>
+            <div class="w-full md:w-1/2 space-y-4 text-center md:text-left">
+                <span class="text-pink-500 font-semibold text-xs tracking-widest uppercase">Дурсамж #3</span>
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-800">Ариун Хайр ба Талархал</h3>
+                <p class="text-gray-600 leading-relaxed font-sans-custom text-sm md:text-base">
+                    Үрийнхөө төлөө ачиж асран хамгаалсан хайранд тань хүү нь насан туршдаа талархаж явдаг билээ. Та минь миний хамгийн нандин эрдэнэ.
+                </p>
+            </div>
+        </div>
+
+        <!-- Photo Item 4 -->
+        <div class="reveal flex flex-col md:flex-row-reverse items-center gap-8 glass-card p-6 md:p-8 rounded-3xl">
+            <div class="w-full md:w-1/2 polaroid-frame rounded-2xl cursor-pointer group" onclick="openLightbox('img-4')">
+                <div class="w-full aspect-[3/4] max-h-[420px] rounded-xl overflow-hidden bg-pink-100">
+                    <img id="img-4" src="images/mom4.jpg" 
+                         onerror="handleImgError(this, 'Дулаан аура')"
+                         alt="Дулаан аура" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <p class="text-center font-handwriting text-xl text-pink-600 mt-3">✨ Зөөлөн зүрхтэй ээж минь</p>
+            </div>
+            <div class="w-full md:w-1/2 space-y-4 text-center md:text-left">
+                <span class="text-pink-500 font-semibold text-xs tracking-widest uppercase">Дурсамж #4</span>
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-800">Зөөлөн Дулаан Харц</h3>
+                <p class="text-gray-600 leading-relaxed font-sans-custom text-sm md:text-base">
+                    Ээж таны минь харц, ааш зан ямагт зөөлөн бөгөөд хүүдээ хамгийн дулаахан орон зайг бэлэглэдэг. Таныхаа хажууд байхад би үргэлж жаргалтай.
+                </p>
+            </div>
+        </div>
+
+        <!-- Photo Item 5 -->
+        <div class="reveal flex flex-col md:flex-row items-center gap-8 glass-card p-6 md:p-8 rounded-3xl">
+            <div class="w-full md:w-1/2 polaroid-frame rounded-2xl cursor-pointer group" onclick="openLightbox('img-5')">
+                <div class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-pink-100">
+                    <img id="img-5" src="images/mom5.jpg" 
+                         onerror="handleImgError(this, 'Аялалын дурсамж')"
+                         alt="Аялалын дурсамж" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <p class="text-center font-handwriting text-xl text-pink-600 mt-3">✈️ Аялал ба баяр баясгалан</p>
+            </div>
+            <div class="w-full md:w-1/2 space-y-4 text-center md:text-left">
+                <span class="text-pink-500 font-semibold text-xs tracking-widest uppercase">Дурсамж #5</span>
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-800">Хамтдаа Бүтээсэн Аялал</h3>
+                <p class="text-gray-600 leading-relaxed font-sans-custom text-sm md:text-base">
+                    Ээжтэйгээ хамт шинэ газрууд үзэж, инээж хөөрсөн аялал бүхэн хүүгийнх нь хувьд хэзээ ч мартагдашгүй нандин дурсамжуудын нэг.
+                </p>
+            </div>
+        </div>
+
+        <!-- CENTER HEARTFELT CARD FROM SON -->
+        <section class="reveal relative my-20">
+            <div class="glass-card bg-gradient-to-br from-white/95 via-rose-50/95 to-pink-100/95 p-8 md:p-14 rounded-3xl shadow-2xl border-2 border-pink-200 text-center relative overflow-hidden">
+                <div class="absolute -top-12 -right-12 w-44 h-44 bg-rose-200/50 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <i class="fas fa-heart text-rose-500 text-5xl mb-4 animate-bounce"></i>
+                <h2 class="text-3xl md:text-5xl font-bold text-rose-800 mb-6 font-handwriting">
+                    "Хүүгээс нь Захих Сэтгэлийн Үг"
+                </h2>
+                
+                <p class="text-base md:text-lg text-gray-700 leading-relaxed max-w-2xl mx-auto mb-8 font-sans-custom">
+                    Ээж ээ, хүүгийнхээ төлөө залуу насаа, халуун зүрхээ зориулсанд тандаа гүнээ талархъя.<br>
+                    Өглөө бүр өөрөөс минь урьтаж сүүлэн асгарах ерөөлийн үг тань хүүг нь үргэлж хамгаалж явдаг шүү.<br><br>
+                    <strong class="text-rose-700 font-semibold">Хайрт ээж тандаа эрүүл энх байж, урт насалж, хэзээд инээд хөөр, баяр баясгалантай байхын дээдийн дээд ерөөлийг хүүгээс нь өргөн дэвшүүлье! 🌸</strong>
+                </p>
+
+                <div class="pt-6 border-t border-pink-200/80 max-w-md mx-auto flex justify-around text-center">
+                    <div>
+                        <span class="block text-2xl font-bold text-pink-600">100%</span>
+                        <span class="text-xs text-gray-500 uppercase tracking-wider">Чин Зүрхний Хайр</span>
+                    </div>
+                    <div class="border-r border-pink-200"></div>
+                    <div>
+                        <span class="block text-2xl font-bold text-pink-600">Хүүгээс нь</span>
+                        <span class="text-xs text-gray-500 uppercase tracking-wider">Хамгийн том бэлэг</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photo Item 6 -->
+        <div class="reveal flex flex-col md:flex-row-reverse items-center gap-8 glass-card p-6 md:p-8 rounded-3xl">
+            <div class="w-full md:w-1/2 polaroid-frame rounded-2xl cursor-pointer group" onclick="openLightbox('img-6')">
+                <div class="w-full aspect-[3/4] max-h-[420px] rounded-xl overflow-hidden bg-pink-100">
+                    <img id="img-6" src="images/mom6.jpg" 
+                         onerror="handleImgError(this, 'Дэгжин ба үзэсгэлэнт')"
+                         alt="Дэгжин ба үзэсгэлэнт" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <p class="text-center font-handwriting text-xl text-pink-600 mt-3">☕ Үзэсгэлэнт дэгжин ээж</p>
+            </div>
+            <div class="w-full md:w-1/2 space-y-4 text-center md:text-left">
+                <span class="text-pink-500 font-semibold text-xs tracking-widest uppercase">Дурсамж #6</span>
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-800">Хээнцэр Үзэсгэлэнт Стиль</h3>
+                <p class="text-gray-600 leading-relaxed font-sans-custom text-sm md:text-base">
+                    Ээж та минь ямагт өөрийн гэсэн онцгой стильтэй, дэгжин бөгөөд үзэсгэлэнтэй! Таныхаа гэгээлэг гоо үзэсгэлэнгээр хүү нь үргэлж бахархдаг.
+                </p>
+            </div>
+        </div>
+
+        <!-- Photo Item 7 -->
+        <div class="reveal flex flex-col md:flex-row items-center gap-8 glass-card p-6 md:p-8 rounded-3xl">
+            <div class="w-full md:w-1/2 polaroid-frame rounded-2xl cursor-pointer group" onclick="openLightbox('img-7')">
+                <div class="w-full aspect-[3/4] max-h-[420px] rounded-xl overflow-hidden bg-pink-100">
+                    <img id="img-7" src="images/mom7.jpg" 
+                         onerror="handleImgError(this, 'Байгалийн сайханд')"
+                         alt="Байгалийн сайханд" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <p class="text-center font-handwriting text-xl text-pink-600 mt-3">🌿 Гэрэлт инээмсэглэл</p>
+            </div>
+            <div class="w-full md:w-1/2 space-y-4 text-center md:text-left">
+                <span class="text-pink-500 font-semibold text-xs tracking-widest uppercase">Дурсамж #7</span>
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-800">Эрч Хүчтэй & Шинэлэг</h3>
+                <p class="text-gray-600 leading-relaxed font-sans-custom text-sm md:text-base">
+                    Ногоон өнгө шиг шинэлэг, цоглог байдал тань амьдралд үргэлж баяр баясгалан, урам зориг бэлэглэж байдаг шүү, ээж ээ.
+                </p>
+            </div>
+        </div>
+
+        <!-- Photo Item 8 -->
+        <div class="reveal flex flex-col md:flex-row-reverse items-center gap-8 glass-card p-6 md:p-8 rounded-3xl">
+            <div class="w-full md:w-1/2 polaroid-frame rounded-2xl cursor-pointer group" onclick="openLightbox('img-8')">
+                <div class="w-full aspect-[3/4] max-h-[420px] rounded-xl overflow-hidden bg-pink-100">
+                    <img id="img-8" src="images/mom8.jpg" 
+                         onerror="handleImgError(this, 'Нарлаг өдрийн инээмсэглэл')"
+                         alt="Нарлаг өдрийн инээмсэглэл" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <p class="text-center font-handwriting text-xl text-pink-600 mt-3">☀️ Нарлаг инээмсэглэл</p>
+            </div>
+            <div class="w-full md:w-1/2 space-y-4 text-center md:text-left">
+                <span class="text-pink-500 font-semibold text-xs tracking-widest uppercase">Дурсамж #8</span>
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-800">Гэгээн Гэрэлт Инээмсэглэл</h3>
+                <p class="text-gray-600 leading-relaxed font-sans-custom text-sm md:text-base">
+                    Цэлмэг тэнгэр дор ээж таныхаа инээмсэглэхийг харах бол хүүгийнх нь хувьд хамгийн том жаргал билээ.
+                </p>
+            </div>
+        </div>
+
+        <!-- Photo Item 9 -->
+        <div class="reveal flex flex-col md:flex-row items-center gap-8 glass-card p-6 md:p-8 rounded-3xl">
+            <div class="w-full md:w-1/2 polaroid-frame rounded-2xl cursor-pointer group" onclick="openLightbox('img-9')">
+                <div class="w-full aspect-[3/4] max-h-[420px] rounded-xl overflow-hidden bg-pink-100">
+                    <img id="img-9" src="images/mom9.jpg" 
+                         onerror="handleImgError(this, 'Эерэг энергийн ундрага')"
+                         alt="Эерэг энергийн ундрага" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <p class="text-center font-handwriting text-xl text-pink-600 mt-3">✨ Залуулаг аура</p>
+            </div>
+            <div class="w-full md:w-1/2 space-y-4 text-center md:text-left">
+                <span class="text-pink-500 font-semibold text-xs tracking-widest uppercase">Дурсамж #9</span>
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-800">Залуулаг & Эерэг Энерги</h3>
+                <p class="text-gray-600 leading-relaxed font-sans-custom text-sm md:text-base">
+                    Ямар ч үед өөрийн гэсэн гэрэл гэгээгээ алдалгүй, залуулаг бөгөөд сэргэлэн явдагт тань хүү нь үргэлж бахархдаг!
+                </p>
+            </div>
+        </div>
+
+        <!-- Photo Item 10 -->
+        <div class="reveal flex flex-col md:flex-row-reverse items-center gap-8 glass-card p-6 md:p-8 rounded-3xl">
+            <div class="w-full md:w-1/2 polaroid-frame rounded-2xl cursor-pointer group" onclick="openLightbox('img-10')">
+                <div class="w-full aspect-[3/4] max-h-[420px] rounded-xl overflow-hidden bg-pink-100">
+                    <img id="img-10" src="images/mom10.jpg" 
+                         onerror="handleImgError(this, 'Үүрдийн хайрт ээж')"
+                         alt="Үүрдийн хайрт ээж" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <p class="text-center font-handwriting text-xl text-pink-600 mt-3">🌸 Үүрдийн нандин дурсамж</p>
+            </div>
+            <div class="w-full md:w-1/2 space-y-4 text-center md:text-left">
+                <span class="text-pink-500 font-semibold text-xs tracking-widest uppercase">Дурсамж #10</span>
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-800">Миний Хамгийн Хайртай Хүн</h3>
+                <p class="text-gray-600 leading-relaxed font-sans-custom text-sm md:text-base">
+                    Амьдралын минь хором бүрд хамтдаа байж, намайг түшин тулдаг хайртай ээждээ маш их хайртай шүү!
+                </p>
+            </div>
+        </div>
+
+        <!-- Interactive Surprise Box Section -->
+        <div class="reveal text-center py-8">
+            <div class="glass-card p-8 md:p-12 rounded-3xl shadow-xl max-w-xl mx-auto border-2 border-pink-200">
+                <h3 class="text-2xl font-bold text-gray-800 mb-3">Хүүгийнх нь Тандаа Бэлдсэн Мэндчилгээ ✉️</h3>
+                <p class="text-gray-600 mb-6 text-sm">Доорх товчийг дарж хүүгийнхээ бэлдсэн тусгай захидлыг нээж үзээрэй!</p>
+                <button onclick="openSurprise()" class="bg-gradient-to-r from-rose-400 via-pink-500 to-rose-500 hover:scale-105 text-white font-bold py-4 px-10 rounded-full shadow-lg hover:shadow-pink-400/50 transition-all duration-300">
+                    🎁 Захидлыг Нээх
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Modal Popup Box -->
+    <div id="surprise-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+        <div class="glass-card bg-white p-8 md:p-10 rounded-3xl max-w-md w-full text-center relative transform scale-90 transition-transform duration-300 id-modal-content shadow-2xl">
+            <button onclick="closeSurprise()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 w-8 h-8 rounded-full flex items-center justify-center">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="w-16 h-16 bg-pink-100 text-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+                ❤️
+            </div>
+            <h4 class="text-2xl font-bold text-gray-800 mb-2">Хамгийн Хайртай Ээждээ!</h4>
+            <p class="text-gray-600 text-sm mb-6 leading-relaxed font-sans-custom">
+                Төрсөн өдрийн халуун баярын мэнд хүргэе! Та минь үргэлж эрүүл энх байж, урт насалж, инээмсэглэл дүүрэн байгаарай. Хүү нь тандаа хязгааргүй хайртай шүү! 🥰
+            </p>
+            <button onclick="closeSurprise()" class="w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 rounded-2xl shadow-md transition-colors">
+                Баярлалаа, Хүүдээ! ❤️
+            </button>
+        </div>
+    </div>
+
+    <!-- Lightbox for Fullscreen Image View -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300" onclick="closeLightbox()">
+        <div class="relative max-w-3xl w-full max-h-[90vh] flex flex-col items-center justify-center">
+            <img id="lightbox-img" src="" alt="Fullscreen view" class="max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl border-4 border-white/20">
+            <p id="lightbox-caption" class="text-white font-handwriting text-2xl mt-4 text-center"></p>
+            <button class="absolute -top-10 right-0 text-white text-2xl hover:text-pink-300">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-12 text-gray-500 text-sm relative z-20">
+        <p class="flex items-center justify-center gap-1 font-semibold">
+            Хайраар бүтээв <i class="fas fa-heart text-pink-500"></i> Хүүгээс нь зориулав
+        </p>
+    </footer>
+
+    <script>
+        /* 1. SVG Image Fallback logic */
+        function handleImgError(imgElement, title) {
+            const svgStr = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800">
+                <defs>
+                    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#fbcfe8;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#fda4af;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#f472b6;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grad)"/>
+                <circle cx="300" cy="350" r="120" fill="white" opacity="0.2"/>
+                <path d="M300 320 C 300 280, 240 260, 220 300 C 200 340, 300 400, 300 410 C 300 400, 400 340, 380 300 C 360 260, 300 280, 300 320 Z" fill="#ffffff" opacity="0.9"/>
+                <text x="50%" y="500" font-family="Comfortaa, sans-serif" font-size="28" font-weight="bold" fill="#ffffff" text-anchor="middle">${title}</text>
+                <text x="50%" y="540" font-family="Comfortaa, sans-serif" font-size="18" fill="#fff0f5" text-anchor="middle">🌸 Хайрт Ээж Минь 🌸</text>
+            </svg>`;
+            imgElement.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgStr);
+        }
+
+        /* 2. Lightbox Controls */
+        function openLightbox(imgId) {
+            const img = document.getElementById(imgId);
+            if (!img) return;
+            const modal = document.getElementById('lightbox-modal');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+
+            lightboxImg.src = img.src;
+            lightboxCaption.textContent = img.alt || 'Хайртай ээж минь';
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox-modal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        /* 3. Scroll Reveal Animations */
+        function handleScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            const windowHeight = window.innerHeight;
+
+            reveals.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 80) {
+                    el.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('load', handleScroll);
+
+        /* 4. Floating Petals Effect */
+        function createPetals() {
+            const container = document.getElementById('petals-container');
+            const petalIcons = ['🌸', '🌺', '✨', '💖', '🌷', '❤️'];
+
+            for (let i = 0; i < 22; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.innerHTML = petalIcons[Math.floor(Math.random() * petalIcons.length)];
+                
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.animationDuration = (Math.random() * 7 + 7) + 's';
+                petal.style.animationDelay = Math.random() * 5 + 's';
+                petal.style.fontSize = (Math.random() * 14 + 14) + 'px';
+
+                container.appendChild(petal);
+            }
+        }
+        createPetals();
+
+        /* 5. Music Synthesizer Logic (Tone.js) */
+        let isPlaying = false;
+        let synth = null;
+
+        function toggleMusic() {
+            const btnText = document.getElementById('music-text');
+            const btnIcon = document.getElementById('music-icon');
+
+            if (!isPlaying) {
+                Tone.start();
+
+                const reverb = new Tone.Reverb({ decay: 5, wet: 0.6 }).toDestination();
+                synth = new Tone.PolySynth(Tone.Synth, {
+                    oscillator: { type: "triangle" },
+                    envelope: { attack: 0.6, decay: 1.2, sustain: 0.5, release: 2 }
+                }).connect(reverb);
+
+                synth.volume.value = -10;
+
+                const notes = [
+                    { time: '0:0', note: 'G4', duration: '4n' },
+                    { time: '0:2', note: 'C5', duration: '4n' },
+                    { time: '1:0', note: 'E5', duration: '2n' },
+                    { time: '2:0', note: 'D5', duration: '4n' },
+                    { time: '2:2', note: 'C5', duration: '4n' },
+                    { time: '3:0', note: 'G5', duration: '2n' }
+                ];
+
+                const pattern = new Tone.Part((time, value) => {
+                    synth.triggerAttackRelease(value.note, value.duration, time);
+                }, notes);
+
+                pattern.loop = true;
+                pattern.loopEnd = '4m';
+
+                Tone.Transport.bpm.value = 68;
+                Tone.Transport.start();
+                pattern.start(0);
+
+                isPlaying = true;
+                btnText.textContent = "Аялгуу зогсоох";
+                btnIcon.classList.remove('fa-music');
+                btnIcon.classList.add('fa-pause');
+            } else {
+                Tone.Transport.stop();
+                isPlaying = false;
+                btnText.textContent = "Аялгуу тоглох";
+                btnIcon.classList.remove('fa-pause');
+                btnIcon.classList.add('fa-music');
+            }
+        }
+
+        /* 6. Surprise Modal Dialog logic */
+        function openSurprise() {
+            const modal = document.getElementById('surprise-modal');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.querySelector('.id-modal-content').classList.remove('scale-90');
+            modal.querySelector('.id-modal-content').classList.add('scale-100');
+        }
+
+        function closeSurprise() {
+            const modal = document.getElementById('surprise-modal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.querySelector('.id-modal-content').classList.remove('scale-100');
+            modal.querySelector('.id-modal-content').classList.add('scale-90');
+        }
+    </script>
+</body>
+</html>
